@@ -1,15 +1,16 @@
 import { Link, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
-import { Book } from "./pages/Book";
-import { BookList } from "./pages/BookList";
 import { Contact } from "./pages/Contact";
 import { About } from "./pages/About";
-import { NewBook } from "./pages/NewBook";
 import { NotFound } from "./pages/NotFound";
+import { BookRoutes } from "./BookRoutes";
 
 function App() {
   return (
     <>
+      <Routes>
+        <Route path="/book" element={<h1>Extra Content</h1>} />
+      </Routes>
       <nav>
         <ul>
           <li>
@@ -23,25 +24,19 @@ function App() {
           </li>
 
           <li>
-            <Link to="/booklist">BookList</Link>
-          </li>
-          <li>
-            <Link to="/newbook">NewBook</Link>
-          </li>
-
-          <li>
             <Link to="/contact">Contact</Link>
+          </li>
+          <li>
+            <Link to="/*">Not Found</Link>
           </li>
         </ul>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="about" element={<About />} />
-        <Route path="book" element={<Book />} />
-        <Route path="booklist" element={<BookList />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="newbook" element={<NewBook />} />
-        <Route path="notfound" element={<NotFound />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/book/*" element={<BookRoutes />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
